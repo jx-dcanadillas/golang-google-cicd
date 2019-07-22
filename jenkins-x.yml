@@ -8,5 +8,5 @@ pipelineConfig:
         agent:
           image: golang:1.10
         step:
-          command: make build
+          command: go test
 
