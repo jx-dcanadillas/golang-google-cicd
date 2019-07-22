@@ -8,4 +8,4 @@ pipelineConfig:
       step:
         agent:
           image: golang:1.10
-        command: && ls /go
+        command: ls /go
