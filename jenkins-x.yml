@@ -2,9 +2,6 @@ buildPack: go
 pipelineConfig:
   pipelines:
     release:
-      build:
-        replace: true
-        steps:
-        - command: go test
-          agent:
-            image: golang:1.10
+      preBuild:
+        preSteps:
+        - command: go get golang.org/x/oauth2/...
