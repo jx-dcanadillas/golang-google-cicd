@@ -5,8 +5,8 @@ pipelineConfig:
       - pipeline: release
         stage: build
         name: make-build 
-        agent:
-          image: golang:1.10
         step:
           command: go test
+          agent:
+            image: golang:1.10
 
