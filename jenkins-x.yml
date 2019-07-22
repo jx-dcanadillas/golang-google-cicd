@@ -1,12 +1,9 @@
 buildPack: go
 pipelineConfig:
-  agent:
-    image: golang:1.10
-#
-#  pipelines:
-#    overrides:
-#      - pipeline: release
-#        stage: build
-#        step: make-build 
-#        agent:
-#          image: golang:1.10
+  pipelines:
+    overrides:
+      - pipeline: release
+        stage: build
+        # name: make-build 
+        agent:
+          image: golang:1.10
