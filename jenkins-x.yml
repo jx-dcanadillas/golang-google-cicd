@@ -7,4 +7,4 @@ pipelineConfig:
         steps:
         - command: go test
           agent:
-            image: gcr.io/cloud-builders/gcloud
+            image: golang:1.10
