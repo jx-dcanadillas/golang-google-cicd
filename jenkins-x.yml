@@ -2,11 +2,10 @@ buildPack: go
 pipelineConfig:
   pipelines:
     overrides:
-      - pipeline: release
-        stage: build
-        name: make-build 
-        step:
-          command: go version && echo $GOPATH
-          agent:
-            image: golang:1.10
-
+    - name: make-build
+      pipeline: release
+      stage: build
+      step:
+        agent:
+          image: golang:1.10
+        command: go version && echo $GOPATH && pwd
