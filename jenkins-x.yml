@@ -6,7 +6,7 @@ pipelineConfig:
         stage: build
         name: make-build 
         step:
-          command: go test
+          command: go version && echo $GOPATH
           agent:
             image: golang:1.10
 
