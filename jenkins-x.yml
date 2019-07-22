@@ -2,6 +2,6 @@ buildPack: go
 pipelineConfig:
   pipelines:
     release:
-      preBuild:
+      build:
         preSteps:
-        - command: go get golang.org/x/oauth2/...
+        - command: ln -s `pwd` /go/src/sample-app && cd /go/src/sample-app && go test
