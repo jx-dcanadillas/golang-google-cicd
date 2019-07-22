@@ -2,5 +2,5 @@ buildPack: go
 pipelineConfig:
   pipelines:
     overrides:
-      agent:
-        image: golang:1.10
+      - agent:
+          image: golang:1.10
