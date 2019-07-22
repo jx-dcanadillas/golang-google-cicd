@@ -1,9 +1,6 @@
 buildPack: go
 pipelineConfig:
   pipelines:
-    release:
-      build:
-        preSteps:
-        - command: ln -s `pwd` /go/src/sample-app && cd /go/src/sample-app && go test
-          agent:
-            image: golang:1.10
+    overrides:
+      agent:
+        image: golang:1.10
