@@ -8,4 +8,4 @@ pipelineConfig:
       step:
         agent:
           image: golang:1.10
-        command: ls /go
+        command: ln -s `pwd` /go/src/sample-app && cd /go/src/sample-app && make build
