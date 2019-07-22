@@ -6,3 +6,5 @@ pipelineConfig:
         replace: true
         steps:
         - command: go test
+          agent:
+            image: gcr.io/cloud-builders/gcloud
