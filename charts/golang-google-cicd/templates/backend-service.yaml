@@ -15,7 +15,7 @@ metadata:
 {{ toYaml .Values.serviceBack.annotations | indent 4 }}
 {{- end }}
 spec:
-  type: {{ .Values.serviceBack.type }}
+  # type: {{ .Values.serviceBack.type }}
   ports:
   - port: {{ .Values.serviceBack.externalPort }}
     targetPort: {{ .Values.serviceBack.internalPort }}

@@ -5,7 +5,7 @@ replicaCount: 1
 image:
   repository: draft
   tag: dev
-  pullPolicy: IfNotPresent
+  pullPolicy: Always
 
 # define environment variables here as a map of key: value
 env:
@@ -15,7 +15,7 @@ knativeDeploy: false
 
 serviceFront:
   name: golang-google-cicd-frontend
-  type: ClusterIP
+  type: LoadBalancer
   externalPort: 80
   internalPort: 80
   annotations:
@@ -24,7 +24,7 @@ serviceFront:
   command: ["sh", "-c", "app -frontend=true -backend-service=http://gceme-backend:8080 -port=80"]
 serviceBack:
   name: golang-google-cicd-backend
-  type: ClusterIP
+  # type: ClusterIP
   externalPort: 8080
   internalPort: 8080
   annotations:
