@@ -15,13 +15,16 @@ knativeDeploy: false
 
 serviceFront:
   name: golang-google-cicd-frontend
-  type: LoadBalancer
+  # type: LoadBalancer
   externalPort: 80
   internalPort: 80
   annotations:
     fabric8.io/expose: "true"
     fabric8.io/ingress.annotations: "kubernetes.io/ingress.class: nginx"
-  command: ["sh", "-c", "app -frontend=true -backend-service=http://gceme-backend:8080 -port=80"]
+  command: 
+    - sh
+    - -c
+    - "app -frontend=true -backend-service=http://golang-google-cicd-backend:8080 -port=80"
 serviceBack:
   name: golang-google-cicd-backend
   # type: ClusterIP
@@ -30,20 +33,11 @@ serviceBack:
   annotations:
     fabric8.io/expose: "true"
     fabric8.io/ingress.annotations: "kubernetes.io/ingress.class: nginx"
-  # command: ["sh", "-c", "app -port=8080"]
   command:
     - sh
     - -c
     - app
     - -port=8080
-# service:
-#   name: golang-google-cicd
-#   type: ClusterIP
-#   externalPort: 80
-#   internalPort: 8080
-#   annotations:
-#     fabric8.io/expose: "true"
-#     fabric8.io/ingress.annotations: "kubernetes.io/ingress.class: nginx"
 resources:
   limits:
     cpu: 100m

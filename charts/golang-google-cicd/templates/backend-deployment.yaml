@@ -46,7 +46,7 @@ spec:
           # successThreshold: {{ .Values.readinessProbe.successThreshold }}
           # timeoutSeconds: {{ .Values.readinessProbe.timeoutSeconds }}
         command: 
-{{ toYaml .Values.serviceBack.command | indent 12}}
+{{ toYaml .Values.serviceBack.command | indent 10}}
         resources:
 {{ toYaml .Values.resources | indent 12 }}
       terminationGracePeriodSeconds: {{ .Values.terminationGracePeriodSeconds }}
