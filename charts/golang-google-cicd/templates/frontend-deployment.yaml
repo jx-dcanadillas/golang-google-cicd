@@ -23,29 +23,29 @@ spec:
       - name: {{ .Chart.Name }}-frontend
         image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
         imagePullPolicy: {{ .Values.image.pullPolicy }}
-        env:
-{{- range $pkey, $pval := .Values.env }}
-        - name: {{ $pkey }}
-          value: {{ quote $pval }}
-{{- end }}
+#         env:
+# {{- range $pkey, $pval := .Values.env }}
+#         - name: {{ $pkey }}
+#           value: {{ quote $pval }}
+# {{- end }}
         ports:
-        - containerPort: {{ .Values.serviceBack.internalPort }}
-        livenessProbe:
-          httpGet:
-            path: {{ .Values.probePath }}
-            port: {{ .Values.serviceBack.internalPort }}
-          initialDelaySeconds: {{ .Values.livenessProbe.initialDelaySeconds }}
-          periodSeconds: {{ .Values.livenessProbe.periodSeconds }}
-          successThreshold: {{ .Values.livenessProbe.successThreshold }}
-          timeoutSeconds: {{ .Values.livenessProbe.timeoutSeconds }}
+        - containerPort: {{ .Values.serviceFront.internalPort }}
+        # livenessProbe:
+        #   httpGet:
+        #     path: {{ .Values.probePath }}
+        #     port: {{ .Values.serviceFront.internalPort }}
+        #   initialDelaySeconds: {{ .Values.livenessProbe.initialDelaySeconds }}
+        #   periodSeconds: {{ .Values.livenessProbe.periodSeconds }}
+        #   successThreshold: {{ .Values.livenessProbe.successThreshold }}
+        #   timeoutSeconds: {{ .Values.livenessProbe.timeoutSeconds }}
         readinessProbe:
           httpGet:
             path: {{ .Values.probePath }}
-            port: {{ .Values.serviceBack.internalPort }}
-          periodSeconds: {{ .Values.readinessProbe.periodSeconds }}
-          successThreshold: {{ .Values.readinessProbe.successThreshold }}
-          timeoutSeconds: {{ .Values.readinessProbe.timeoutSeconds }}
-        command: {{ .Values.serviceBack.command }}
+            port: {{ .Values.serviceFront.internalPort }}
+          # periodSeconds: {{ .Values.readinessProbe.periodSeconds }}
+          # successThreshold: {{ .Values.readinessProbe.successThreshold }}
+          # timeoutSeconds: {{ .Values.readinessProbe.timeoutSeconds }}
+        command: {{ .Values.serviceFront.command }}
         resources:
 {{ toYaml .Values.resources | indent 12 }}
       terminationGracePeriodSeconds: {{ .Values.terminationGracePeriodSeconds }}

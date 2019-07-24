@@ -23,28 +23,28 @@ spec:
       - name: {{ .Chart.Name }}-backend
         image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
         imagePullPolicy: {{ .Values.image.pullPolicy }}
-        env:
-{{- range $pkey, $pval := .Values.env }}
-        - name: {{ $pkey }}
-          value: {{ quote $pval }}
+#         env:
+# {{- range $pkey, $pval := .Values.env }}
+#         - name: {{ $pkey }}
+#           value: {{ quote $pval }}
 {{- end }}
         ports:
         - containerPort: {{ .Values.serviceBack.internalPort }}
-        livenessProbe:
-          httpGet:
-            path: {{ .Values.probePath }}
-            port: {{ .Values.serviceBack.internalPort }}
-          initialDelaySeconds: {{ .Values.livenessProbe.initialDelaySeconds }}
-          periodSeconds: {{ .Values.livenessProbe.periodSeconds }}
-          successThreshold: {{ .Values.livenessProbe.successThreshold }}
-          timeoutSeconds: {{ .Values.livenessProbe.timeoutSeconds }}
+        # livenessProbe:
+        #   httpGet:
+        #     path: {{ .Values.probePath }}
+        #     port: {{ .Values.serviceBack.internalPort }}
+          # initialDelaySeconds: {{ .Values.livenessProbe.initialDelaySeconds }}
+          # periodSeconds: {{ .Values.livenessProbe.periodSeconds }}
+          # successThreshold: {{ .Values.livenessProbe.successThreshold }}
+          # timeoutSeconds: {{ .Values.livenessProbe.timeoutSeconds }}
         readinessProbe:
           httpGet:
             path: {{ .Values.probePath }}
             port: {{ .Values.serviceBack.internalPort }}
-          periodSeconds: {{ .Values.readinessProbe.periodSeconds }}
-          successThreshold: {{ .Values.readinessProbe.successThreshold }}
-          timeoutSeconds: {{ .Values.readinessProbe.timeoutSeconds }}
+          # periodSeconds: {{ .Values.readinessProbe.periodSeconds }}
+          # successThreshold: {{ .Values.readinessProbe.successThreshold }}
+          # timeoutSeconds: {{ .Values.readinessProbe.timeoutSeconds }}
         command: {{ .Values.serviceBack.command }}
         resources:
 {{ toYaml .Values.resources | indent 12 }}
