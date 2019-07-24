@@ -1,0 +1,26 @@
+{{- if .Values.knativeDeploy }}
+{{- else }}
+apiVersion: v1
+kind: Service
+metadata:
+{{- if .Values.serviceFront.name }}
+  name: {{ .Values.serviceFront.name }}
+{{- else }}
+  name: {{ template "fullname" . }}-frontend
+{{- end }}
+  labels:
+    chart: "{{ .Chart.Name }}-{{ .Chart.Version | replace "+" "_" }}"
+{{- if .Values.serviceFront.annotations }}
+  annotations:
+{{ toYaml .Values.serviceFront.annotations | indent 4 }}
+{{- end }}
+spec:
+  type: {{ .Values.serviceFront.type }}
+  ports:
+  - port: {{ .Values.serviceFront.externalPort }}
+    targetPort: {{ .Values.serviceFront.internalPort }}
+    protocol: TCP
+    name: http
+  selector:
+    app: {{ template "fullname" . }}
+{{- end }}
