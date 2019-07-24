@@ -15,7 +15,7 @@ knativeDeploy: false
 
 serviceFront:
   name: golang-google-cicd-frontend
-  # type: LoadBalancer
+  type: LoadBalancer
   externalPort: 80
   internalPort: 80
   annotations:
