@@ -46,7 +46,7 @@ spec:
           # successThreshold: {{ .Values.readinessProbe.successThreshold }}
           # timeoutSeconds: {{ .Values.readinessProbe.timeoutSeconds }}
         # command: {{ .Values.serviceFront.command }}
-        command: ["sh", "-c", "app -frontend=true -backend-service=http://golang-google-cicd-backend -port=80"]
+        command: ["sh", "-c", "app -frontend=true -backend-service=http://golang-google-cicd-backend:8080 -port=80"]
         resources:
 {{ toYaml .Values.resources | indent 12 }}
       terminationGracePeriodSeconds: {{ .Values.terminationGracePeriodSeconds }}
